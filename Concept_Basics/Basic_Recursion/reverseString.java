@@ -1,4 +1,8 @@
-class Solution {
+package Concept_Basics.Basic_Recursion;
+
+import java.util.Vector;
+
+public class reverseString {
     /* Recursive function to reverse the 
     string character by character */
     private void reverse(Vector<Character> s, int left, int right) {
@@ -22,4 +26,5 @@ class Solution {
         reverse(s, left, right);
         return s;
     }
+    
 }
