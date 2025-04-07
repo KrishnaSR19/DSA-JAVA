@@ -64,7 +64,6 @@ public class MergeSort {
         // Perform Merge sort on the whole array
         mergeSortHelper(nums, 0, n - 1);
 
-        // Return the sorted array
         return nums;
     }
 
