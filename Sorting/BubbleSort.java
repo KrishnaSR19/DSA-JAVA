@@ -17,6 +17,7 @@ public class BubbleSort {
                     isSwapped = true;
                 }
             }
+            
             /** Break out of loop 
           if no swaps done*/
             if (!isSwapped) {
