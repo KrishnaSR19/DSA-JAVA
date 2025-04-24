@@ -1,5 +1,7 @@
 /*
  * Brute Force
+ *Time Complexity: O(N * log N) + O(N), for using hashset, it will take O(N * log N) and also to traverse the array once O(N). Here N is the size of the array.
+Space Complexity: O(N) because in the worst case, all the elements of the array can be unique and it will take O(N) space. Here N represents the size of the array.
  */
 
 import java.util.*;
@@ -31,6 +33,8 @@ public class RemoveDulpli {
 
 /*
  * Optimal
+ * Time Complexity: O(N), for single traversal of the array, where N is the size of the array.
+   Space Complexity: O(1), not using any extra space.
  */
 
  import java.util.*;
