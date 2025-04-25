@@ -76,6 +76,8 @@ class Solution {
 
 /*
  * Optimal -1
+ * Time Complexity: O(N) where N is size of array, to compute the sum of the array elements.
+Space Complexity: O(1) as no extra space is used.
  */
 
  public int missingNumber(int[] nums) {
@@ -101,6 +103,8 @@ class Solution {
 
 /*
  * optima-2
+ * Time Complexity: O(N) for getting the sum of the array elements, where N is the size of the array.
+Space Complexity: O(1) as no extra space is used.
  */
 
  // Function to find missing number in array
