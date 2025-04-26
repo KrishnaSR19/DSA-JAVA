@@ -1,4 +1,12 @@
 /*
+ * Given an integer array nums sorted in non-decreasing order, remove all duplicates in-place so that each unique element appears only once. Return the number of unique elements in the array.
+If the number of unique elements be k, then,
+Change the array nums such that the first k elements of nums contain the unique values in the order that they were present originally.
+The remaining elements, as well as the size of the array does not matter in terms of correctness.
+An array sorted in non-decreasing order is an array where every element to the right of an element is either equal to or greater in value than that element.
+ */
+
+/*
  * Brute Force
  *Time Complexity: O(N * log N) + O(N), for using hashset, it will take O(N * log N) and also to traverse the array once O(N). Here N is the size of the array.
 Space Complexity: O(N) because in the worst case, all the elements of the array can be unique and it will take O(N) space. Here N represents the size of the array.
