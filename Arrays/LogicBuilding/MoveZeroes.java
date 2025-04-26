@@ -1,6 +1,9 @@
+/*
+ * Q.Given an integer array nums, move all the 0's to the end of the array. The relative order of the other elements must remain the same. This must be done in place, without making a copy of the array.
+ */
+
+
 import java.util.*;
-
-
 /*
  * Brute Force
  *Time Complexity: O(2*N), O(N) for copying non-zero elements from the original to the temporary array. O(X) for again copying it back from the temporary to the original array. O(N-X) for filling zeros in the original array. Here N is the size of the array and X is the number of non-zero elements.
