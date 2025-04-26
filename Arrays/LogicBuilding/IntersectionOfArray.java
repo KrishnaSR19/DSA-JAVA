@@ -1,5 +1,16 @@
+
+/*
+ * Q.Given two sorted arrays, nums1 and nums2, return an array containing the intersection of these two arrays. Each element in the result must appear as many times as it appears in both arrays.
+The intersection of two arrays is an array where all values are present in both arrays.
+ */
+
+
+
+
 /*
  * Brute Force
+ * Time Complexity: O(MxN), where M is the length of nums1 and N is the length of nums2.
+Space Complexity: O(N), where N is size of nums2, extra space to store answer is not considered.
  */
 
 import java.util.ArrayList;
@@ -40,3 +51,39 @@ public class IntersectionOfArray {
         return ans;
     }
 }
+
+/*
+ * Optimal
+ * Time Complexity: O(M), where M is the length of that array which has less elements.
+Space Complexity: O(1), extra space to store answer is not considered.
+ */
+
+     // Function to find intersection of two sorted arrays
+     public int[] intersectionArray(int[] nums1, int[] nums2) {
+        List<Integer> tempList = new ArrayList<>();
+        int i = 0, j = 0;
+
+        // Traverse both arrays using two pointers approach
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums2[j] < nums1[i]) {
+                j++;
+            } 
+            // nums1[i] == nums2[j]
+            else {
+                tempList.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+
+        // Convert the list to an integer array
+        int[] ans = new int[tempList.size()];
+        for (int k = 0; k < tempList.size(); k++) {
+            ans[k] = tempList.get(k);
+        }
+
+        // Return the intersection of two arrays
+        return ans;
+    }
