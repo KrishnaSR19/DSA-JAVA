@@ -1,3 +1,19 @@
+/*
+ *Q. Given two integers r and c, return the value at the rth row and cth column (1-indexed) in a Pascal's Triangle.
+In Pascal's triangle:
+
+The first row has one element with a value of 1.
+Each row has one more element in it than its previous row.
+The value of each element is equal to the sum of the elements directly above it when arranged in a triangle format.
+ */
+
+/*
+ * Time Complexity: O(C), where C is the column number. This is because the loop in the nCr function runs for a total of C times, where C can be as large as N/2.
+Space Complexity: O(1), as no extra space is used.
+ */
+
+
+
 public class PascalTriangle1 {
     import java.util.*; 
 
