@@ -8,6 +8,43 @@ The value of each element is equal to the sum of the elements directly above it 
  */
 
 
+/*
+ * Brute Force
+ * TC:O(r*c)
+ * SC:O(1)
+ */
+
+public class PascalsTria2 {
+    public static int pascalTriangle2(int r) {
+        for(int c=1;c<r;c++){
+           return nCr(r-1, c-1);
+        }
+        
+    }
+    
+    // Function to calculate nCr
+    private static int nCr(int n, int r)  {
+        // Choose the smaller value for lesser iterations
+        if(r > n-r) r = n-r;
+        
+        // base case
+        if(r == 1) return n;
+        
+        int res = 1; // to store the result 
+        
+        // Calculate nCr using iterative method avoiding overflow 
+        for (int i = 0; i < r; i++) {
+            res = res * (n - i);
+            res = res / (i + 1);
+        }
+        
+        return res; // return the result 
+    }
+
+
+ 
+}
+
 
 /*
 Time Complexity: O(R), where R is the given row number.
