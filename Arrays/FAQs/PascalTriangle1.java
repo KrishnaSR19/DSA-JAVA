@@ -14,8 +14,8 @@ Space Complexity: O(1), as no extra space is used.
 
 
 
+import java.util.*; 
 public class PascalTriangle1 {
-    import java.util.*; 
 
 class Solution {
     // Function to print the element in rth row and cth column 
