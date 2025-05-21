@@ -58,7 +58,10 @@ class Solution {
 }
 
 
-
+/*
+ * Optimal
+ * 
+ */
 import java.util.*;
 
 class Solution {
@@ -125,6 +128,9 @@ class Solution {
 
 /*
  * Optimal
+ * Time Complexity: O(N3), as each of the pointers i and j, is running for approximately N times. And both the pointers k and l combined can run for approximately N times including the operation of skipping duplicates. So the total time complexity will be O(N3). Here N is size of the array.
+
+Space Complexity: O(no. of quadruplets), this space is only used to store the answer. No extra space is used to solve this problem. So, from that perspective, space complexity can be written as O(1).
  */
 
 class Solution{
