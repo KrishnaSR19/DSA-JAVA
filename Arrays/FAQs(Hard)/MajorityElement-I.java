@@ -48,6 +48,9 @@ class Solution {
 
 /*
  * Better(HashMap)
+ * Time Complexity: O(N), where N is the size of the array.
+The code goes through the array once to count frequencies using a hash map (O(N)), then checks the map to find the majority element (O(N) in the worst case). Since these are separate linear operations, the overall time complexity is O(N).
+Space Complexity: O(N), for using a map data structure.
  */
 
  import java.util.*;
@@ -92,3 +95,68 @@ class Solution {
     }
 }
 
+
+
+/*
+ * Optimal(Moores Voting Algorithm)
+ * Time Complexity: O(N) + O(N), where N is size of the given array. The first O(N) is to calculate the count and find the expected majority element. The second one is to check if the expected element is the majority one or not.
+
+Space Complexity: O(1) no extra space used.
+ */
+
+ import java.util.*;
+
+class Solution {
+    // Function to find the majority element in an array
+    public int majorityElement(int[] nums) {
+        // Size of the given array
+        int n = nums.length;
+        
+        // Count
+        int cnt = 0;
+        
+        // Element
+        int el = 0;
+        
+        // Applying the algorithm
+        for (int i = 0; i < n; i++) {
+            if (cnt == 0) {
+                cnt = 1;
+                el = nums[i];
+            } else if (el == nums[i]) {
+                cnt++;
+            } else {
+                cnt--;
+            }
+        }
+        
+        /* Checking if the stored element
+         is the majority element*/
+        int cnt1 = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == el) {
+                cnt1++;
+            }
+        }
+        
+        // Return element if it is a majority element
+        if (cnt1 > (n / 2)) {
+            return el;
+        }
+        
+        // Return -1 if no such element found
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 2, 1, 1, 1, 2, 2};
+        
+        // Create an instance of Solution class
+        Solution sol = new Solution();
+
+        int ans = sol.majorityElement(arr);
+        
+        // Print the majority element found
+        System.out.println("The majority element is: " + ans);
+    }
+}
