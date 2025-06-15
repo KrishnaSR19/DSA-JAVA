@@ -1,3 +1,8 @@
+/*
+ * Q.Given an array nums of n integers, return the length of the longest sequence of consecutive integers. The integers in this sequence can appear in any order.
+ */
+
+
 
 /*
  * Brute Force
@@ -8,21 +13,16 @@
  */
 
 // Helper function to perform linear search
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 private boolean linearSearch(int[] a, int num) {
         int n = a.length;
         // Traverse through the array
 
-import java.util.Arrays;
-
-    for (int i = 0; i < n; i++) {
-            if (a[i] == num)
-                return true;
-        }
-        return false;
-    }
-
-public int longestConsecutive(int[] nums) {
-    // If the array is empty
+// If the array is empty
     if (nums.length == 0) {
         return 0;
     }
@@ -96,3 +96,54 @@ public int longestConsecutive(int[] nums) {
     }
     return longest;
 }
+
+
+/*
+ * Optimal
+ * Time Complexity: O(N) + O(2xN) ~ O(3xN), where N is the size of the array. The function takes O(N) to insert all elements into the set data structure. After that, for every starting element, we find the consecutive elements. Although nested loops are used, the set will be traversed at most twice in the worst case. Therefore, the time complexity is O(2xN) instead of O(N2).
+
+Space Complexity: O(N), as we use a set data structure to solve this problem.
+Note: The time complexity assumes that we use an unordered_set, which has O(1) time complexity for set operations.
+
+In the worst case, if the set operations take O(N), the total time complexity would be approximately O(N2). If we use a set instead of an unordered_set, the set operations will have a time complexity of O(logN), resulting in a total time complexity of O(NlogN).
+ */
+
+    public int longestConsecutive(int[] nums) {
+        int n = nums.length;
+        // If the array is empty
+        if (n == 0) return 0;
+
+        // Initialize the longest sequence length
+        int longest = 1; 
+        Set<Integer> st = new HashSet<>();
+
+        // Put all the array elements into the set
+        for (int i = 0; i < n; i++) {
+            st.add(nums[i]);
+        }
+
+        /* Traverse the set to 
+           find the longest sequence */
+        for (int it : st) {
+            // Check if 'it' is a starting number of a sequence
+            if (!st.contains(it - 1)) {
+                // Initialize the count of the current sequence
+                int cnt = 1; 
+                // Starting element of the sequence
+                int x = it; 
+
+                // Find consecutive numbers in the set
+                while (st.contains(x + 1)) {
+                    // Move to the next element in the sequence
+                    x = x + 1; 
+                    // Increment the count of the sequence
+                    cnt = cnt + 1; 
+                }
+                // Update the longest sequence length
+                longest = Math.max(longest, cnt);
+            }
+        }
+        return longest;
+    }
+
+
