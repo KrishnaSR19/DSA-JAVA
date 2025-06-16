@@ -4,6 +4,10 @@
  * Time Complexity: O(N3), where N is the size of the array. Since we are using three nested loops, each running approximately N times.
 Space Complexity: O(1), as we are not using any extra space.
  */
+
+import java.util.HashMap;
+import java.util.Map;
+
 public int longestSubarray(int[] nums, int k) {
     int n = nums.length;
     int maxLength = 0;
@@ -57,4 +61,49 @@ public int longestSubarray(int[] nums, int k) {
     }
 
     return maxLength;
+}
+
+/*
+ * Better
+ * Time Complexity: O(N) or O(NxlogN) depending on the map data structure used,
+ * where N is the size of the array. For example, using an unordered_map in C++
+ * gives a time complexity of O(N) (though in the worst case, unordered_map
+ * takes O(N) to find an element, making the time complexity O(N2)). If we use a
+ * map data structure, the time complexity is O(NxlogN). The best case
+ * complexity is O(N) as we are traversing the array with a loop.
+ * 
+ * Space Complexity: O(N), since we are using a map data structure.
+ */
+
+public int longestSubarray(int[] nums, int k) {
+    int n = nums.length;
+
+    Map<Integer, Integer> preSumMap = new HashMap<>();
+    int sum = 0;
+    int maxLen = 0;
+    for (int i = 0; i < n; i++) {
+        // calculate the prefix sum till index i
+        sum += nums[i];
+
+        // if the sum equals k, update maxLen
+        if (sum == k) {
+            maxLen = Math.max(maxLen, i + 1);
+        }
+
+        // calculate the sum of remaining part i.e., sum - k
+        int rem = sum - k;
+
+        // calculate the length and update maxLen
+        if (preSumMap.containsKey(rem)) {
+            int len = i - preSumMap.get(rem);
+            maxLen = Math.max(maxLen, len);
+        }
+
+        // update the map if sum is not already present
+        if (!preSumMap.containsKey(sum)) {
+            preSumMap.put(sum, i);
+        }
+    }
+
+    return maxLen;
 }
