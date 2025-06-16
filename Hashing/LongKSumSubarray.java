@@ -34,7 +34,7 @@ public int longestSubarray(int[] nums, int k) {
  * Time Complexity: O(N2), where N is the size of the array. Since we are using
  * 2 nested loops, each running approximately N times.
  * 
- * Space Complexity: O(1), as we are not using any extra space.
+ * Space Complexity: O(1)
  */
 
 public int longestSubarray(int[] nums, int k) {
