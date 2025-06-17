@@ -64,7 +64,7 @@ public int longestSubarray(int[] nums, int k) {
 }
 
 /*
- * Better
+ * Better(positives + negatives)
  * Time Complexity: O(N) or O(NxlogN) depending on the map data structure used,
  * where N is the size of the array. For example, using an unordered_map in C++
  * gives a time complexity of O(N) (though in the worst case, unordered_map
@@ -110,7 +110,7 @@ public int longestSubarray(int[] nums, int k) {
 
 
 /*
- * Optimal
+ * Optimal(works for positive only)
  * Time Complexity: O(N), where N is the size of the array.
 There are two pointers left and right which traverse the array at once taking linear time.
 
