@@ -9,7 +9,7 @@
 Space Complexity: O(1) since we are not using any additional space.
  */
 
-// Function to count the number of subarrays with XOR k
+
 public int subarraysWithXorK(int[] nums, int k) {
     int n = nums.length;
     int cnt = 0;
@@ -25,6 +25,37 @@ public int subarraysWithXorK(int[] nums, int k) {
             for (int K = i; K <= j; K++) {
                 xorr = xorr ^ nums[K];
             }
+            // Step 3: Check XOR and count
+            if (xorr == k)
+                cnt++;
+        }
+    }
+    return cnt;
+}
+
+/*
+ * Better
+ * Time Complexity: O(N2), where N is the size of the array. Since we are using
+ * two nested loops, each running for N times, the time complexity will be
+ * approximately O(N2).
+ * Space Complexity: O(1) as we are not using any additional space.
+ */
+
+
+public int subarraysWithXorK(int[] nums, int k) {
+    int n = nums.length;
+    int cnt = 0;
+
+    // Step 1: Generate subarrays
+    for (int i = 0; i < n; i++) {
+        int xorr = 0;
+        for (int j = i; j < n; j++) {
+            /*
+             * Step 2: Calculate XOR of
+             * all elements in the subarray
+             */
+            xorr = xorr ^ nums[j];
+
             // Step 3: Check XOR and count
             if (xorr == k)
                 cnt++;
