@@ -5,7 +5,7 @@
  */
 
 /*
- * Brute Force
+ * Brute Force (Linear Search)
    TC :O(n)
  */
 
@@ -22,7 +22,7 @@ class Solution {
 }
 
 /*
- * Iterative Search
+ * Binary Search Iterative Search
  * Time Complexity: O(log(N)) (where N is the size of the given array)
  * In each step, the search space is divided into two halves. In the worst case,
  * this process will continue until the search space can no longer be divided
@@ -59,4 +59,47 @@ public int search(int[] nums, int target) {
 
     // If the target is not found
     return -1;
+}
+
+/*
+ * Binary Search Recursive Method
+ * Time Complexity: O(logN), where N is the size of the array
+ * In each step, the search space is divided into two halves. In the worst case,
+ * this process will continue until the search space can no longer be divided
+ * and the number of divisions required to reduce the array size to one is
+ * log(N), making the overall time complexity O(logN).
+ * 
+ * Space Complexity: O(logN), due to the recursion stack space.
+ */
+
+// Helper function to find the target in the given range
+private int func(int[] nums, int low, int high, int target) {
+    // base case
+    if (low > high)
+        return -1;
+
+    int ind; // to store the index of target
+    int mid = low + (high - low) / 2;
+
+    // If target is found, return the index
+    if (nums[mid] == target)
+        ind = mid;
+
+    // Else if nums[mid] > target, search is left space
+    else if (nums[mid] > target)
+        ind = func(nums, low, mid - 1, target);
+
+    // Else search in right space
+    else
+        ind = func(nums, mid + 1, high, target);
+
+    return ind; // Return the index
+}
+
+// Function to find the given target in a sorted array
+public int search(int[] nums, int target) {
+    int n = nums.length;
+
+    // Find the target in the whole array
+    return func(nums, 0, n - 1, target);
 }
