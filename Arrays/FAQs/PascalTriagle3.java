@@ -7,21 +7,26 @@ The value of each element is equal to the sum of the elements directly above it 
 */
 
 /*
- * Time Complexity: O(N2), generating each row takes linear time relative to its size, and there are N rows, leading to a total time complexity of O(N2).
-Space Complexity: O(N2), storing the entire Pascal's Triangle requires space proportional to the sum of the first N natural numbers, resulting in O(N2) space complexity.
+ * A naive way to solve this problem will be to calculate the element n and c (where n is the given row number and c is the column number that will vary from 1 to n) for every column from 1 to n and for every row, using the process used in Pascal Triangle-I. However, this will result in an O(N3) time complexity.
+
+A better way to solve this problem will be to generate every row from 1 to n using the method discussed in Pascal Triangle-II and store the entire Pascal's Triangle in a 2D list. Once the entire Pascal's Triangle is generated, we can return the triangle.
  */
 
 
-public class PascalTriagle3 {
-    import java.util.*;
+
+/*
+  Optimal
+ * Time Complexity: O(N2), generating each row takes linear time relative to its size, and there are N rows, leading to a total time complexity of O(N2).
+Space Complexity: O(N2), storing the entire Pascal's Triangle requires space proportional to the sum of the first N natural numbers, resulting in O(N2) space complexity.
+ */
 
 class Solution {
     private List<Integer> generateRow(int row) {
         long ans = 1;
         List<Integer> ansRow = new ArrayList<>();
-        
+
         // Inserting the 1st element
-        ansRow.add(1); 
+        ansRow.add(1);
 
         // Calculate the rest of the elements
         for (int col = 1; col < row; col++) {
@@ -29,7 +34,7 @@ class Solution {
             ans = ans / col;
             ansRow.add((int) ans);
         }
-        
+
         return ansRow; // Return the computed row
     }
 
@@ -40,28 +45,8 @@ class Solution {
         for (int row = 1; row <= n; row++) {
             pascalTriangle.add(generateRow(row));
         }
-        
-        //return the pascalTriangle
+
+        // return the pascalTriangle
         return pascalTriangle;
     }
-}
-
-class Main {
-    public static void main(String[] args) {
-        int n = 5;
-        Solution sol = new Solution();
-
-        // Generate Pascal's Triangle with n rows
-        List<List<Integer>> pascalTriangle = sol.pascalTriangleIII(n);
-
-        // Output the Pascal's Triangle
-        for (List<Integer> row : pascalTriangle) {
-            for (int element : row) {
-                System.out.print(element + " ");
-            }
-            System.out.println();
-        }
-    }
-}
-
 }
