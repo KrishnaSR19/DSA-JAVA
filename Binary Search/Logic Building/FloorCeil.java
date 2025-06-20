@@ -18,3 +18,33 @@ public int[] getFloorAndCeil(int[] nums, int x) {
     }
     return new int[] { floor, ceil };
 }
+
+/*
+ * Optimal
+ * Time Complexity: O(logN), where N is the size of the given array. We are
+ * using the Binary Search algorithm, which divides the search space in half
+ * each time, resulting in a logarithmic time complexity.
+ * Space Complexity: O(1), as we are not using any extra space to solve this
+ * problem.
+ */
+
+public int[] getFloorAndCeil(int[] nums, int x) {
+    int low = 0, high = nums.length - 1;
+    int floor = -1, ceil = -1;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (nums[mid] == x) {
+            floor = ceil = nums[mid];
+            break;
+        } else if (nums[mid] < x) {
+            floor = nums[mid];
+            low = mid + 1;
+        } else {
+            ceil = nums[mid];
+            high = mid - 1;
+        }
+    }
+
+    return new int[] { floor, ceil };
+}
