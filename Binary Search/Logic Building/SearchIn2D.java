@@ -8,7 +8,28 @@ You must write a solution in O(log(m * n)) time complexity.
 
 
 
-/*
+ /*
+  * Brute Force
+    * Time Complexity: O(m * n), where m is the number of rows and n is the number of columns in the matrix.
+    * Space Complexity: O(1), as we are using a constant amount of space for variables
+  */
+
+
+
+  class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+/*Optimal Approach using Binary Search
  * Time Complexity: O(log(m * n)), where m is the number of rows and n is the number of columns in the matrix.
  * Space Complexity: O(1), as we are using a constant amount of space for variables
  */
