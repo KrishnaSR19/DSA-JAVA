@@ -67,3 +67,42 @@ class Solution {
         return maxAns;
     }
 }
+
+/*
+ * Better Approach
+ * Time Complexity:O(NlogN + klogN), N is size of the given array, k = no. of
+ * gas stations to be placed. As, the insert operation of priority queue takes
+ * logN time complexity. O(NlogN) for inserting all the indices with distance
+ * values and O(klogN) for placing the gas stations.
+ * 
+ * Space Complexity:O(N-1)+O(N-1). The first O(N-1) is for the array to keep
+ * track of placed gas stations and the second one is for the priority queue.
+ */
+class Solution {
+    public double minimiseMaxDistance(int[] arr, int k) {
+        int n = arr.length;
+        int[] howMany = new int[n - 1];
+
+        // Max heap of double[]: [distance, sectionIndex]
+        PriorityQueue<double[]> pq = new PriorityQueue<>((a, b) -> Double.compare(b[0], a[0]));
+
+        for (int i = 0; i < n - 1; i++) {
+            double dist = arr[i + 1] - arr[i];
+            pq.offer(new double[] { dist, i });
+        }
+
+        for (int gasStations = 1; gasStations <= k; gasStations++) {
+            double[] top = pq.poll();
+
+            int secInd = (int) top[1];
+            howMany[secInd]++;
+
+            double initialDist = arr[secInd + 1] - arr[secInd];
+            double newSecLen = initialDist / (howMany[secInd] + 1);
+
+            pq.offer(new double[] { newSecLen, secInd });
+        }
+
+        return pq.peek()[0];
+    }
+}
