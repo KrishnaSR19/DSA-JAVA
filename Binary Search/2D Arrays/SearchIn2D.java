@@ -73,3 +73,101 @@ class Solution {
         return false;
     }
 }
+
+/*
+ * Optimal Approach I
+ * Time Complexity: O(log(N*M)), where N is the number of rows in the matrix, M
+ * is the number of columns in each row. As, binary search is being applied on
+ * the 1-D array of size N*M.
+ * 
+ * Space Complexity: As no additional space is used, so the Space Complexity is
+ * O(1).
+ */
+
+import java.util.*;
+
+class Solution {
+    // Function to search for a given target in matrix
+    public boolean searchMatrix(int[][] mat, int target) {
+        int n = mat.length;
+        int m = mat[0].length;
+
+        int low = 0, high = n * m - 1;
+
+        // Perform binary search
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            // Calculate the row and column
+            int row = mid / m;
+            int col = mid % m;
+
+            // If target is found return true
+            if (mat[row][col] == target)
+                return true;
+            else if (mat[row][col] < target)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+
+        // Return false if target is not found
+        return false;
+    }
+}
+
+
+/*
+ * Optimal Approach II
+ * Time Complexity: O(log(N*M)), where N is the number of rows in the matrix, M
+ * is the number of columns in each row. As, binary search is being applied on
+ * the 1-D array of size N*M.
+ * Space Complexity: As no additional space is used, so the Space Complexity is O(1). 
+ */
+
+ class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+
+        int n = matrix.length;
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+
+            if(searchRow(matrix[mid],target)==true){
+                return true;
+            }
+            
+            if(matrix[mid][0]>target){
+                high=mid-1;
+
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return false;
+        
+    }
+
+    public boolean searchRow(int [] matrix, int target){
+        int n =matrix.length;
+        int low=0;
+        int high=n-1;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+
+            if(matrix[mid]==target){
+                return true;
+            }
+            else if(matrix[mid]>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return false;
+    }
+}
