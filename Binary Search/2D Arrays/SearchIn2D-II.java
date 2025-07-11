@@ -77,3 +77,39 @@ class Solution {
         return false;
     }
 }
+
+/*
+ * Optimal
+ * Time Complexity: O(N + M), where N is the number of rows in the matrix, M is
+ * the number of columns in each row. Traversal starts from (0, M-1), and at
+ * most, it can end up in the cell (M-1, 0). Therefore, the total distance can
+ * be at most (N+M). Hence, the time complexity is O(N+M).
+ * 
+ * Space Complexity: As no additional space is used, so the Space Complexity is
+ * O(1).
+ * 
+ */
+class Solution {
+    // Function to search for a given target in matrix
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        // Initialize the row and col
+        int row = 0, col = m - 1;
+
+        // Traverse the matrix from (0, m-1):
+        while (row < n && col >= 0) {
+
+            // Return true if target is found
+            if (matrix[row][col] == target)
+                return true;
+            else if (matrix[row][col] < target)
+                row++;
+            else
+                col--;
+        }
+        // Return false if target not found
+        return false;
+    }
+}
