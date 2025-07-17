@@ -15,7 +15,7 @@ class Solution {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int n = nums.length;
-        int closestSum = nums[0] + nums[1] + nums[2];  // Initialize with first 3 elements
+        int closestSum = nums[0] + nums[1] + nums[2]; // Initialize with first 3 elements
 
         for (int i = 0; i < n - 2; i++) {
             int left = i + 1;
