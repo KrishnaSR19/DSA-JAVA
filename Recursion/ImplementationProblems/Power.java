@@ -32,7 +32,7 @@ class Solution {
 }
 
 /*
- * Optimal using recursion:
+ *  Using recursion:
  * Time Complexity : The time complexity is O(log N) due to the halving of n in
  * the even case and linear reduction in the odd case.
  * Space Complexity :The space complexity is O(log n) because of the recursive
@@ -60,3 +60,33 @@ class Solution {
         }
     }
 }
+
+/*
+ * Optimal using iterative approach:
+ * Time Complexity: O(log N), where N is the absolute value of the exponent. The algorithm reduces the problem size by half in each iteration.
+ * Space Complexity: O(1), as it uses a constant amount of space for variables.
+ */
+
+class Solution {
+    public double myPow(double x, int n) {
+        long N = n; // Convert to long to safely handle Integer.MIN_VALUE
+
+        if (N < 0) {
+            x = 1 / x;     // Take reciprocal
+            N = -N;        // Make exponent positive
+        }
+
+        double result = 1.0;
+
+        while (N > 0) {
+            if ((N % 2) == 1) {
+                result *= x; // If the current bit is 1, multiply result by x
+            }
+            x *= x;          // Square the base
+            N /= 2;          // Right-shift the exponent (divide by 2)
+        }
+
+        return result;
+    }
+}
+
