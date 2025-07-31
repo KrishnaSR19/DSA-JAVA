@@ -66,3 +66,45 @@ public void solveSudoku(char[][] board) {
         return true;  
     }
 };
+
+
+/*
+ * More Optimized
+ */
+
+
+ class Solution {
+    public void solveSudoku(char[][] board) {
+        solve(board);
+    }
+
+    static boolean solve(char[][] board){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                char c=board[i][j];
+                if(c=='.'){
+                    for(char k='1';k<='9';k++){
+                        if(isValid(board,k,i,j)){
+                            board[i][j]=k;
+                            if(solve(board))return true;
+                            board[i][j]='.';
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    static boolean isValid(char[][] board,char c,int row,int col){
+        for(int i=0;i<9;i++){
+            if(board[i][col]==c || board[row][i]==c)return false;
+
+            int subRow=3*(row/3)+i/3;
+            int subCol=3*(col/3)+i%3;
+            if(board[subRow][subCol]==c)return false;
+        }
+        return true;
+    }
+}
