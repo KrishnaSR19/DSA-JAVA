@@ -8,10 +8,8 @@ The value of each element is equal to the sum of the elements directly above it 
 
 /*
  * A naive way to solve this problem will be to calculate the element n and c (where n is the given row number and c is the column number that will vary from 1 to n) for every column from 1 to n and for every row, using the process used in Pascal Triangle-I. However, this will result in an O(N3) time complexity.
-
 A better way to solve this problem will be to generate every row from 1 to n using the method discussed in Pascal Triangle-II and store the entire Pascal's Triangle in a 2D list. Once the entire Pascal's Triangle is generated, we can return the triangle.
  */
-
 
 
 /*
@@ -37,7 +35,6 @@ class Solution {
 
         return ansRow; // Return the computed row
     }
-
     public List<List<Integer>> pascalTriangleIII(int n) {
         List<List<Integer>> pascalTriangle = new ArrayList<>();
 
@@ -48,5 +45,42 @@ class Solution {
 
         // return the pascalTriangle
         return pascalTriangle;
+    }
+}
+
+
+
+/*
+ * More optimized
+ */
+
+ class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        // Final result list to store all rows of Pascal's Triangle
+        List<List<Integer>> res = new ArrayList<>();
+
+        // Loop through each row index from 0 to numRows - 1
+        for (int i = 0; i < numRows; i++) {
+            // Create a new list to store the current row
+            List<Integer> row = new ArrayList<>();
+            
+            // First element in each row is always 1
+            int n = 1;
+
+            // Build the row using the mathematical formula for Pascal's Triangle
+            for (int j = 0; j <= i; j++) {
+                row.add(n); // Add the current element to the row
+
+                // Update n to next value in the row using combination formula:
+                // C(i, j+1) = C(i, j) * (i - j) / (j + 1)
+                n = n * (i - j) / (j + 1);
+            }
+
+            // Add the completed row to the result list
+            res.add(row);
+        }
+
+        // Return the full Pascal's Triangle
+        return res;
     }
 }
