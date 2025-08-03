@@ -33,3 +33,27 @@ class Solution {
         return head;
     }
 }
+
+/*
+ * Optimized
+ */
+class Solution {
+  public ListNode deleteByValue(ListNode head, int value) {
+    // Case 1: The head node contains the value
+    if (head != null && head.val == value) {
+      return head.next;
+    }
+
+    ListNode current = head;
+    // Traverse to find the node whose next has the target value
+    while (current != null && current.next != null) {
+      if (current.next.val == value) {
+        current.next = current.next.next; // Delete the node
+        break; // Stop after deleting the first match
+      }
+      current = current.next;
+    }
+
+    return head;
+  }
+}
