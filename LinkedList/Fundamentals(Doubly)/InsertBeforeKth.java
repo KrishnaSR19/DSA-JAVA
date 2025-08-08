@@ -6,7 +6,6 @@
  * The space complexity is O(1) since we are not using any additional data structures that grow with the input size.
  */
 
-
 class Solution {
 public:
     /* Function to insert a node before the
