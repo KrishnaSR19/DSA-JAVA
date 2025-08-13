@@ -7,6 +7,8 @@
 Space Complexity: O(1) as we have not used any extra space.
  */
 
+import java.lang.classfile.components.ClassPrinter.ListNode;
+
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null) {
@@ -35,4 +37,45 @@ class Solution {
         temp.next = temp.next.next;
         return head;
     }
+}
+
+/*
+ * Optimal(Two Pointers)
+ * Time Complexity: O(N) since the fast pointer will traverse the entire linked
+ * list, where N is the length of the linked list.
+ * Space Complexity: O(1), as we have not used any extra space.
+ */
+
+// Function to remove the nth node from end
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    // Creating pointers
+    ListNode fastp = head;
+    ListNode slowp = head;
+    /*
+     * Move the fastp pointer
+     * N nodes ahead
+     */
+    for (int i = 0; i < n; i++) {
+        fastp = fastp.next;
+    }
+    /*
+     * If fastp becomes NULL
+     * the Nth node from the
+     * end is the head
+     */
+    if (fastp == null) {
+        return head.next;
+    }
+    /*
+     * Move both pointers
+     * Until fastp reaches the end
+     */
+    while (fastp.next != null) {
+        fastp = fastp.next;
+        slowp = slowp.next;
+    }
+    // Delete the Nth node from the end
+    ListNode delNode = slowp.next;
+    slowp.next = slowp.next.next;
+    return head;
 }
