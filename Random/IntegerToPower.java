@@ -6,7 +6,7 @@ Return the number of ways n can be expressed as the sum of the xth power of uniq
 Since the result can be very large, return it modulo 109 + 7.
 
 For example, if n = 160 and x = 3, one way to express n is n = 23 + 33 + 53.
- */
+ 
 
 class Solution {
     static final int MOD = 1_000_000_007;
