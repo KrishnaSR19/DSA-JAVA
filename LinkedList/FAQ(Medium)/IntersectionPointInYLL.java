@@ -89,3 +89,41 @@ class Solution {
         return temp1;
     }
 }
+
+/*
+ * Optimal(Two Pointers)
+ * Time Complexity: O(N + M), where N and M are the lengths of first and second
+ * linked list respectively.
+ * In the worst case (when the last node in a linked list is the intersection
+ * node), both the pointers will traverse the total length of the two linked
+ * lists before meeting at the intersection node. Hence, the time complexity is
+ * O(N + M).
+ * Space Complexity: O(1), as no extra space was used.
+ */
+class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Edge case
+        if (headA == null || headB == null)
+            return null;
+        // Initialize two pointers to traverse the lists
+        ListNode d1 = headA;
+        ListNode d2 = headB;
+        // Traverse both lists until the pointers meet
+        while (d1 != d2) {
+            // Move both the pointers by one place
+            d1 = d1.next;
+            d2 = d2.next;
+            // If intersection is found
+            if (d1 == d2)
+                return d1;
+            // If either of the two pointers reaches end, place at the front of next linked
+            // list
+            if (d1 == null)
+                d1 = headB;
+            if (d2 == null)
+                d2 = headA;
+        }
+        // Return the intersection node
+        return d1;
+    }
+}
