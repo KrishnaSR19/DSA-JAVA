@@ -7,7 +7,7 @@ Note that pos is not passed as a parameter.
 
 
 
-/*
+/*Brute Force(Hashing)
  * Time Complexity: O(N) The algorithm goes through the entire linked list once, with 'N' representing the total number of nodes. As a result, the time complexity is linear, or O(N).
 Space Complexity: O(N) The algorithm utilizes a hash map to store the nodes it encounters. This hash map can store up to 'N' nodes, where 'N' is the total number of nodes in the list. Therefore, the space complexity is O(N) because of the additional space used by the hash map.
  */
@@ -33,6 +33,51 @@ class Solution {
         }
 
         // If no loop is detected, return null
+        return null;
+    }
+}
+
+
+/*
+ * Optimal(Two Pointers)
+ * Time Complexity: O(N) The code examines each node in the linked list exactly once, where 'N' is the total number of nodes. This results in a linear time complexity, O(N), as the traversal through the list is direct and sequential.
+Space Complexity: O(1) The code uses a fixed amount of extra space, regardless of the size of the linked list. This is accomplished by employing two pointers, slow and fast, to detect the loop. Since no additional data structures are used that depend on the size of the list, the space complexity remains constant, O(1).
+ */
+
+class Solution {
+    public ListNode findStartingPoint(ListNode head) {
+        // Initialize a slow and fast 
+        // pointers to the head of the list
+        ListNode slow = head;
+        ListNode fast = head;
+        // Phase 1: Detect the loop
+        while (fast != null && fast.next != null) {      
+            // Move slow one step
+            slow = slow.next;     
+            // Move fast two steps
+            fast = fast.next.next;
+            // If slow and fast meet,
+            // a loop is detected
+            if (slow == fast) {       
+                // Reset the slow pointer
+                // to the head of the list
+                slow = head;
+                // Phase 2: Find the first node of the loop
+                while (slow != fast) {
+                    
+                    // Move slow and fast one step
+                    // at a time
+                    slow = slow.next;
+                    fast = fast.next;
+
+                    // When slow and fast meet again,
+                    // it's the first node of the loop
+                }       
+                // Return the first node of the loop
+                return slow;
+            }
+        }
+        // If no loop is found, return null
         return null;
     }
 }
