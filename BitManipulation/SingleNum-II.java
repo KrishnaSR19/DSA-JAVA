@@ -81,3 +81,62 @@ class Solution {
         return ans;
     }
 }
+
+/*
+ *Time Complexity: O(Nlog(N)) –
+Sorting the array takes O(Nlog(N)) TC.
+Traversing the array takes O(N/3) TC. Hence, O(Nlog(N)) + O(N/3) = O(Nlog(N)).
+Space Complexity: O(1) Using a couple of variables i.e., constant space. 
+ */
+class Solution {
+    /* Function to get the single 
+    number in the given array */
+    public int singleNumber(int[] nums) {
+        // Variable to store size of array
+        int n = nums.length;
+        
+        // Sorting the array
+        Arrays.sort(nums);
+        
+        // Traversing the array
+        for (int i = 1; i < nums.length; i += 3) {
+            /* Checking the elements 
+            in the bucket */
+            if (nums[i] != nums[i - 1]) {
+                // Return the single number
+                return nums[i - 1];
+            }
+        }
+        
+        /* If not found till now, then 
+        the last number will be single */
+        return nums[n - 1];
+    }
+}
+
+/*Optimal
+ * Time Complexity: O(N), where N is the number of elements in the array
+Traversing the array once takes linear time.
+Space Complexity: O(1), as only a couple of variables are used.
+ */
+
+ import java.util.*;
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        // Two buckets
+        int ones = 0, twos = 0;
+
+        // Traverse the array 
+        for (int i = 0; i < nums.length; i++) {
+            // Add the number to Ones, if it is not in Twos
+            ones = (ones ^ nums[i]) & ~twos;
+
+            // Add the number to Twos, if it is already in Ones
+            twos = (twos ^ nums[i]) & ~ones;
+        }
+
+        return ones;
+    }
+}
+
