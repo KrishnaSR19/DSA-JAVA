@@ -32,8 +32,15 @@ class Solution {
              * Shift the number every
              * time by 1 place
              */
-            num = num >> 1;
+            num = num >> 1;                 //also can be done using left shift 
         }
         return count;
     }
 }
+
+//bit required to be flipped can also be done using inbuilt function
+// class Solution {
+//     public int minBitsFlip(int start, int goal) {
+//         return Integer.bitCount(start ^ goal);
+//     }
+// }
