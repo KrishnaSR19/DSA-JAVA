@@ -4,7 +4,7 @@ Do not include the duplicates in the answer.
  */
 
  /*
-  * Time Complexity: O(2N*N) (where N is the size of the array) –
+Time Complexity: O(2N*N) (where N is the size of the array) –
 The outer loop runs for count numbers of times, and count is 2N resulting in O(2N) TC.
 The inner for loop runs to check N bits, resulting in O(N) TC.
 Space Complexity: O(2N*N) – Space required to store the power set (approximately).
@@ -29,19 +29,17 @@ class Solution {
             
             // To store the current subset
             List<Integer> subset = new ArrayList<>();
-            
+     
             // Traverse on n bits
             for (int i = 0; i < n; i++) {
                 if ((val & (1 << i)) != 0) {
                     subset.add(nums[i]);
                 }
-            }
-            
+            } 
             /* Add the current subset 
             to final answer */
             ans.add(subset);
-        }
-        
+        }    
         // Return stored answer
         return ans;
     }
