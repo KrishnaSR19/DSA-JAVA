@@ -78,3 +78,41 @@ class Solution {
         return true;
     }
 }
+
+//Same but done using hashmap not recommended
+import java.util.HashMap;
+
+class Solution {
+    public boolean lemonadeChange(int[] bills) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int bill : bills) {
+            map.put(bill, map.getOrDefault(bill, 0) + 1);
+
+            if (bill == 10) {
+                // Give one $5 as change
+                if (map.getOrDefault(5, 0) >= 1) {
+                    map.put(5, map.get(5) - 1);
+                } else {
+                    return false;
+                }
+            } else if (bill == 20) {
+                int count5 = map.getOrDefault(5, 0);
+                int count10 = map.getOrDefault(10, 0);
+
+                if (count10 >= 1 && count5 >= 1) {
+                    // Use one $10 and one $5
+                    map.put(10, count10 - 1);
+                    map.put(5, count5 - 1);
+                } else if (count5 >= 3) {
+                    // Use three $5 bills
+                    map.put(5, count5 - 3);
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
