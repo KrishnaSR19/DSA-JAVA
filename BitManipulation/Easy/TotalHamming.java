@@ -30,3 +30,26 @@ class Solution {
 /*
  * Optimal
  */
+
+
+ class Solution {
+    public int totalHammingDistance(int[] nums) {
+        int total = 0;
+        int n = nums.length;
+
+        // check each of 32 bits
+        for (int bit = 0; bit < 32; bit++) {
+            int ones = 0;
+
+            // count numbers with a '1' at this bit position
+            for (int num : nums) {
+                ones += (num >> bit) & 1;
+            }
+
+            int zeros = n - ones;
+            total += ones * zeros; // all differing pairs at this bit
+        }
+
+        return total;
+    }
+}
