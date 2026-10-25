@@ -5,7 +5,7 @@ A subarray is a contiguous non-empty sequence of elements within an array.
  */
 
 
-/*
+
 Brute Force
  * Time Complexity: O(N3), where N is the size of the array. Using three nested loops, each running approximately N times.
   Space Complexity: O(1) no extra space used.
